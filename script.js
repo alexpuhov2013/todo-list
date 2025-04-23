@@ -1,6 +1,8 @@
 const form = document.querySelector("#item-form")
 const input = document.querySelector("#item-input")
 const list = document.querySelector("#item-list")
+const clearBtn = document.querySelector("#clear")
+
 
 
 form.addEventListener("submit", (e) => {
@@ -20,10 +22,20 @@ form.addEventListener("submit", (e) => {
     
     li.appendChild(button)
     list.appendChild(li)
-
+    input.value = ''
 })
-
-
+list.addEventListener("click", (e) => {
+    if(e.target.parentElement.classList.contains("remove-item")){
+      const listItem = e.target.closest('li')
+        listItem.remove()
+    }
+})
+clearBtn.addEventListener("click", (e) => {
+    // const listItems = list.querySelectorAll("li")
+    // listItems.forEach((li) => li.remove())
+    list.innerHTML = ''
+    
+})
 
 function createBtn(classes) {
     const button = document.createElement('button')
